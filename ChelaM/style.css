@@ -1,0 +1,802 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle, #f0f4f7 0%, #d9e4f5 50%, #007e9e 100%);
+    background-attachment: fixed;
+    height: 100vh;
+    /* Prevents rubber-banding bounce on iPhones */
+    overflow: hidden; 
+}
+
+.mobile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Support for Safari/iPhone */
+    padding: 40px 30px;
+    border-radius: 25px;
+    width: 100%;
+    /* Max-width for Samsung A51 / iPhone Pro Max */
+    max-width: 360px; 
+    box-shadow: 0 15px 35px rgba(0, 50, 70, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    text-align: center;
+}
+
+.header h1 {
+    font-weight: 300;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: #007e9e;
+}
+
+.header p {
+    font-size: 0.85rem;
+    color: #5a7d8c;
+    margin-bottom: 30px;
+}
+
+.field {
+    margin-bottom: 12px;
+}
+
+input {
+    width: 100%;
+    /* Taller inputs are easier to tap on mobile */
+    height: 50px; 
+    padding: 0 15px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(240, 244, 247, 0.9);
+    outline: none;
+    font-size: 16px; /* Prevents iOS from auto-zooming on focus */
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    background: #fff;
+    box-shadow: 0 0 0 2px rgba(0, 126, 158, 0.3);
+}
+
+.submit-btn {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    background-color: #007e9e;
+    color: #f0f4f7;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    /* Removes default mobile button styling */
+    -webkit-appearance: none; 
+}
+
+.options {
+    margin-top: 25px;
+}
+
+.options a {
+    text-decoration: none;
+    color: #007e9e;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Specific adjustment for very small phones (like iPhone SE) */
+@media (max-height: 600px) {
+    .login-box {
+        padding: 25px 20px;
+    }
+    .header p {
+        margin-bottom: 20px;
+    }
+}
+
+/* --- Add these to your existing style.css --- */
+
+.google-btn {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 126, 158, 0.2); /* Lagoon Blue tint */
+    border-radius: 12px;
+    color: #5a7d8c;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s ease;
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+.google-btn:active {
+    background: #f0f4f7; /* Icy Pearl feedback on tap */
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #9eb6c0; /* Soft haze color */
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(0, 126, 158, 0.1);
+}
+
+.divider:not(:empty)::before {
+    margin-right: 15px;
+}
+
+.divider:not(:empty)::after {
+    margin-left: 15px;
+}
+
+/* Adjusting the login box height for mobile content */
+.login-box {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.social-footer {
+    border-top: 1px solid rgba(0, 126, 158, 0.1);
+    padding-top: 25px;
+    margin-top: 20px;
+}
+
+.social-footer p {
+    font-size: 0.7rem;
+    color: #406c7e;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Perfect thumb-spacing for mobile */
+}
+
+.social-icons a {
+    color: #007e9e; /* Lagoon Blue */
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.page-footer {
+    position: absolute;
+    bottom: 20px; /* Distance from the bottom of the phone screen */
+    text-align: center;
+    width: 100%;
+}
+
+.page-footer p {
+    font-size: 0.7rem;
+    color: #f0f4f7; /* Icy Pearl - makes it readable against the blue background */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Ensure the wrapper fills the whole mobile screen */
+.mobile-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes brand up, footer down */
+    align-items: center;
+    height: 100vh;
+    padding: 60px 20px 30px 20px; /* Space for status bar and home bar */
+    background: radial-gradient(circle, #f0f4f7 0%, #d9e4f5 50%, #007e9e 100%);
+}
+
+/* Elegant Brand Header */
+.brand-name {
+    color: #010d10;
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-family: 'bickham-script-pro', cursive;
+    margin: 0;
+}
+
+/* Centered Login Box */
+.login-box {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 35px 25px;
+    border-radius: 25px;
+    width: 100%;
+    max-width: 360px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Subtle Page Footer */
+.page-footer p {
+    font-size: 0.7rem;
+    color: #f0f4f7;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* Reset any Absolute positioning you had before to avoid "terrible" overlaps */
+.brand-container, .page-footer {
+    position: static; 
+    width: auto;
+}
+
+/* Add these styles to your CSS file */
+
+.brand-container {
+    text-align: center;
+    margin-bottom: 20px; /* Space between branding and the login box */
+}
+
+.brand-name {
+    color: #007e9e; /* Lagoon Blue */
+    font-size: 1.6rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 300;
+    font-family: 'Bickham Script Pro', cursive;
+    margin-bottom: 5px; /* Tight gap between name and slogan */
+}
+
+.brand-slogan {
+    color: #42484b; /* Summer Haze/Muted Blue */
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-style: italic; /* Gives it that high-end feel */
+    opacity: 0.9;
+}
+
+/* Ensure the wrapper doesn't feel cramped on the A51/iPhone */
+.mobile-wrapper {
+    padding-top: 50px; 
+}
+
+/* --- Luxury Polish (Replaces the messy images) --- */
+
+.brand-container {
+    text-align: center;
+    margin-bottom: 40px;
+    animation: fadeInDown 1.2s ease-out;
+}
+
+.brand-name {
+    color: #007e9e; /* Lagoon Blue */
+    font-size: 2rem; /* Slightly larger for impact */
+    letter-spacing: 8px; /* Extra wide for luxury feel */
+    text-transform: uppercase;
+    font-weight: 200;
+    font-family: 'Bickham Script Pro', cursive; /* Elegant script font */
+    margin-bottom: 8px;
+}
+
+.brand-slogan {
+    color: #090a0a;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Add a subtle glow behind the login box */
+.login-box {
+    box-shadow: 0 0 80px rgba(0, 126, 158, 0.1), 
+                0 20px 40px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* Subtle animation for the brand name */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Home Page Specific Styles --- */
+
+/* --- Home Page Specific Styles --- */
+
+.home-screen {
+    justify-content: flex-start !important; /* Align content to top */
+    padding-top: 30px;
+}
+
+.home-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.user-welcome p { font-size: 0.8rem; color: #5a7d8c; }
+.user-welcome h2 { font-size: 1.4rem; color: #007e9e; font-weight: 600; }
+
+.cart-icon {
+    position: relative;
+    font-size: 1.5rem;
+    color: #007e9e;
+}
+
+.badge {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #007e9e;
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+}
+
+.search-container {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 15px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.search-container input {
+    background: transparent;
+    border: none;
+    height: auto;
+    font-size: 0.9rem;
+    padding: 0;
+}
+
+.featured-card {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #007e9e 0%, #d9e4f5 100%);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    color: white;
+    box-shadow: 0 15px 30px rgba(0, 126, 158, 0.2);
+}
+
+.featured-content h3 { font-size: 1.5rem; margin: 5px 0 15px; }
+
+.shop-now {
+    background: white;
+    color: #007e9e;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 20px;
+    width: calc(100% - 40px);
+    max-width: 360px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(15px);
+    height: 70px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link { color: #5a7d8c; font-size: 1.3rem; }
+.nav-link.active { color: #007e9e; }
+
+/* --- Visual Portal Image Handling --- */
+
+.cat-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This makes sure the JPG fills the box perfectly */
+    display: block;
+}
+
+.cat-card {
+    background-color: #f0f4f7; /* Icy Pearl background while image loads */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* --- 3D Bubble Portals --- */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px 10px;
+    justify-items: center; /* Centers the bubbles in the grid */
+}
+
+.cat-card.portal {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: transparent; /* Removes the box background */
+    box-shadow: none;
+}
+
+.bubble {
+    width: 100px; /* Adjust size for your A56 screen */
+    height: 100px;
+    border-radius: 50%; /* Makes it a perfect circle */
+    background: white;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 10px 25px rgba(0, 126, 158, 0.2); /* Soft Lagoon Blue shadow */
+    transition: transform 0.3s ease;
+}
+
+.bubble img {
+    width: 80%; /* Makes image small inside the bubble */
+    height: 80%;
+    object-fit: contain;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+}
+
+.cat-card.portal span {
+    font-size: 0.7rem;
+    color: #007e9e;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* Hover/Touch Effect: The bubble "pops" forward */
+.cat-card.portal:active .bubble {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 126, 158, 0.3);
+}
+
+/* --- Floating Animation for Bubbles --- */
+
+.bubble {
+    /* Existing bubble styles remain, just add the animation line below */
+    animation: float 4s ease-in-out infinite;
+}
+
+/* We create different timing for each bubble so they don't move at the exact same time */
+.cat-card:nth-child(1) .bubble { animation-delay: 0s; }
+.cat-card:nth-child(2) .bubble { animation-delay: 0.5s; }
+.cat-card:nth-child(3) .bubble { animation-delay: 1s; }
+.cat-card:nth-child(4) .bubble { animation-delay: 1.5s; }
+
+/* The actual "Floating" movement */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px); /* Moves the bubble up 12px */
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Keeps the "Pop" effect working even with the animation */
+.cat-card.portal:active .bubble {
+    animation-play-state: paused; /* Stops floating when you touch it */
+    transform: scale(1.1);
+}
+
+/* --- Search Dropdown & Horizontal List --- */
+
+.search-container {
+    position: relative; /* Keeps the dropdown attached to the bar */
+}
+
+.search-dropdown {
+    display: none; /* Hidden by default */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    margin-top: 10px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.horizontal-list {
+    display: flex;
+    overflow-x: auto; /* Allows side-to-side scrolling */
+    gap: 15px;
+    padding-bottom: 5px;
+}
+
+/* Hide scrollbar but keep functionality */
+.horizontal-list::-webkit-scrollbar {
+    display: none;
+}
+
+.mini-item {
+    background: #f0f4f7; /* Icy Pearl */
+    color: #007e9e; /* Lagoon Blue */
+    padding: 8px 20px;
+    border-radius: 50px;
+    white-space: nowrap; /* Prevents text from wrapping */
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 126, 158, 0.1);
+}
+
+/* Show the dropdown when the input is clicked */
+.search-container input:focus + .search-dropdown,
+.search-container input:active + .search-dropdown {
+    display: block;
+}
+
+/* --- Product Grid Styling --- */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two items per row */
+    gap: 15px;
+    padding: 15px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.product-image {
+    position: relative;
+    height: 180px;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-image img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain; /* Keeps your clothing images looking sharp */
+}
+
+.wishlist {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    color: #007e9e;
+}
+
+.product-info {
+    padding: 12px;
+}
+
+.product-info h4 {
+    font-size: 0.8rem;
+    margin: 0;
+    color: #333;
+}
+
+.product-info .price {
+    color: #007e9e;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Back Button Style */
+.back-btn {
+    color: #007e9e;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+/* --- Apparel Sub-Category Portals --- */
+
+.apparel-portal {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.portal-circle {
+    width: 120px;
+    height: 160px; /* More of an oval/portrait shape for clothes */
+    background: white;
+    border-radius: 60px; /* Soft pill shape */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 126, 158, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: 0.3s ease;
+}
+
+.portal-circle img {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+.apparel-portal span {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #007e9e;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Interaction for your A56 */
+.apparel-portal:active .portal-circle {
+    transform: scale(0.95);
+    background: #f0f4f7;
+}
+
+/* --- Jeans Product Listing --- */
+
+.product-listing {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+.item-card {
+    display: flex;
+    background: white;
+    border-radius: 15px;
+    padding: 12px;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 126, 158, 0.05);
+    border: 1px solid rgba(0, 126, 158, 0.05);
+}
+
+.img-box {
+    width: 80px;
+    height: 80px;
+    background: #f0f4f7;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.img-box img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+}
+
+.item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.item-details h4 {
+    font-size: 0.9rem;
+    color: #333;
+    margin: 0;
+}
+
+.item-details .price {
+    font-size: 0.85rem;
+    color: #007e9e;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.add-to-cart {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #007e9e;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Touch feedback for mobile */
+.item-card:active {
+    background: #fcfcfc;
+    transform: scale(0.98);
+}
+
+/* --- Elegant Brand Motto Footer --- */
+
+.brand-motto {
+    text-align: center;
+    padding: 40px 20px 100px; /* Extra bottom padding so it clears the nav bar */
+    opacity: 0.8;
+}
+
+.brand-motto p {
+    font-family: 'Playfair Display', serif; /* Or your preferred elegant font */
+    font-style: italic; /* The slanting look */
+    font-size: 0.9rem;
+    color: #007e9e; /* Your signature Lagoon Blue */
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.motto-line {
+    width: 40px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #007e9e, transparent);
+    margin: 0 auto;
+}
